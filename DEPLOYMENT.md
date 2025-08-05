@@ -35,8 +35,9 @@ git push -u origin main
    - **Project Name:** `shafii-portfolio`
    - **Framework Preset:** Other
    - **Root Directory:** Leave empty (uses root)
-   - **Build Command:** `cd frontend && npm run build`
-   - **Output Directory:** `frontend/dist`
+   - **Build Command:** Leave empty (vercel.json handles this)
+   - **Output Directory:** Leave empty (vercel.json handles this)
+   - **Install Command:** Leave empty (vercel.json handles this)
 
 5. **Add Environment Variables** (Click "Environment Variables"):
 
@@ -45,11 +46,18 @@ git push -u origin main
    EMAIL_PASSWORD = uijdtnhangpvsfdo
    NODE_ENV = production
    OPENAI_API_KEY = sk-proj-0123456789abcdef0123456789abcdef
-   CORS_ORIGIN = https://your-vercel-domain.vercel.app
-   FRONTEND_URL = https://your-vercel-domain.vercel.app
    ```
 
 6. **Click "Deploy"**
+
+7. **After first deployment:**
+   - You'll get a URL like: `https://shafii-portfolio-xxx.vercel.app`
+   - Go back to Environment Variables and add:
+   ```
+   CORS_ORIGIN = https://shafii-portfolio-xxx.vercel.app
+   FRONTEND_URL = https://shafii-portfolio-xxx.vercel.app
+   ```
+   - Click "Redeploy" from the Deployments tab
 
 ### 3. Post-Deployment Setup
 
