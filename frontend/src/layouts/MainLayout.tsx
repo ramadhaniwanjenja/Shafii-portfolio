@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ChatInterface from "../components/chatbot/ChatInterface";
 
@@ -7,6 +7,7 @@ interface MainLayoutProps {
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const headerStyle = {
     backgroundColor: "#0F172A",
     borderBottom: "1px solid #1E293B",
@@ -96,7 +97,31 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
       <main style={mainStyle}>{children}</main>
 
-      <ChatInterface />
+      {/* Floating Chat Button */}
+      {!isChatOpen && (
+        <button
+          onClick={() => setIsChatOpen(true)}
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            width: "60px",
+            height: "60px",
+            borderRadius: "50%",
+            background: "linear-gradient(135deg, #4C1D95, #7C3AED)",
+            border: "none",
+            color: "white",
+            fontSize: "24px",
+            cursor: "pointer",
+            boxShadow: "0 4px 20px rgba(124, 58, 237, 0.3)",
+            zIndex: 1000,
+          }}
+        >
+          💬
+        </button>
+      )}
+
+      <ChatInterface isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
     </div>
   );
 };
