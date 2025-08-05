@@ -1,0 +1,24 @@
+{
+  "name": "portfolio-chat-backend",
+  "version": "1.0.0",
+  "description": "Backend service for portfolio chat functionality",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "@types/express": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "node": "^22.18.0",
+    "nodemailer": "^7.0.5",
+    "openai": "^4.28.0",
+    "socket.io": "^4.6.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
