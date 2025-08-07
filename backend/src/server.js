@@ -4,6 +4,7 @@ const cors = require("cors");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 const { OpenAI } = require("openai");
+const { handleContactForm } = require("./emailService");
 
 const app = express();
 const httpServer = createServer(app);
@@ -96,18 +97,28 @@ app.post("/api/contact", async (req, res) => {
       });
     }
 
-    // For now, just return success (we can add email functionality later)
-    console.log("Contact form submission:", { name, email, subject, message });
+    // Send emails using the email service
+    await handleContactForm({ name, email, subject, message });
     
     res.json({
       success: true,
-      message: "Message sent successfully! I'll get back to you soon.",
+      message: "Message sent successfully! Check your email for confirmation.",
     });
   } catch (error) {
     console.error("Error handling contact form:", error);
+    
+    // Provide specific error messages based on the error type
+    let errorMessage = "Failed to send message. Please try again later.";
+    
+    if (error.message.includes("EMAIL_PASSWORD") || error.message.includes("credentials")) {
+      errorMessage = "Email service is not properly configured. Please contact the administrator.";
+    } else if (error.message.includes("EMAIL_USER")) {
+      errorMessage = "Email configuration error. Please contact the administrator.";
+    }
+    
     res.status(500).json({
       success: false,
-      message: "Failed to send message. Please try again later.",
+      message: errorMessage,
     });
   }
 });
