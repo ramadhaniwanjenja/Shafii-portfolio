@@ -25,7 +25,7 @@ const ChatInterface: React.FC = () => {
     setIsLoading(true)
 
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://shafii-portfolio.vercel.app';
       const response = await fetch(`${backendUrl}/chat`, {
         method: 'POST',
         headers: {

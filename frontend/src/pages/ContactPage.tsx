@@ -40,7 +40,7 @@ const ContactPage: React.FC = () => {
     setSubmitStatus({ type: null, message: "" });
 
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://shafii-portfolio.vercel.app';
       const response = await fetch(`${backendUrl}/api/contact`, {
         method: "POST",
         headers: {

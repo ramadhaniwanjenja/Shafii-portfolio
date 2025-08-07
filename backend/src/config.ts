@@ -12,7 +12,7 @@ const serverConfigSchema = z.object({
     .enum(["development", "production", "test"])
     .default("development"),
   OPENAI_API_KEY: z.string(),
-  CORS_ORIGIN: z.string().default("http://localhost:3000"),
+  CORS_ORIGIN: z.string().default("https://shafii-portfolio-85bt.vercel.app"),
 });
 
 // OpenAI configuration
