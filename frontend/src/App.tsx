@@ -1,21 +1,26 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ChatInterface from './chatbot/ChatInterface'
+import MainLayout from './layouts/MainLayout';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import ProjectsPage from './pages/ProjectsPage';
+import ProjectDetailPage from './pages/ProjectDetailPage';
+import ContactPage from './pages/ContactPage';
+import CVPage from './pages/CVPage';
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <header className="App-header">
-          <h1>Shafii's Portfolio</h1>
-          <p>Welcome to my portfolio! Feel free to chat with me.</p>
-        </header>
-        <main>
-          <Routes>
-            <Route path="/" element={<ChatInterface />} />
-          </Routes>
-        </main>
-      </div>
+      <MainLayout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/:id" element={<ProjectDetailPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/cv" element={<CVPage />} />
+        </Routes>
+      </MainLayout>
     </Router>
   )
 }
