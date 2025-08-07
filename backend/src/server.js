@@ -74,6 +74,44 @@ app.post("/chat", async (req, res) => {
   }
 });
 
+// Contact form endpoint
+app.post("/api/contact", async (req, res) => {
+  try {
+    const { name, email, subject, message } = req.body;
+
+    // Validate required fields
+    if (!name || !email || !subject || !message) {
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required",
+      });
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        success: false,
+        message: "Please provide a valid email address",
+      });
+    }
+
+    // For now, just return success (we can add email functionality later)
+    console.log("Contact form submission:", { name, email, subject, message });
+    
+    res.json({
+      success: true,
+      message: "Message sent successfully! I'll get back to you soon.",
+    });
+  } catch (error) {
+    console.error("Error handling contact form:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to send message. Please try again later.",
+    });
+  }
+});
+
 // Socket.IO connection handling
 io.on("connection", (socket) => {
   console.log("Client connected:", socket.id);
