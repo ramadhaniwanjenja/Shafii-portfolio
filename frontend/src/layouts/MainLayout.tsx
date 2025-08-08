@@ -8,6 +8,8 @@ interface MainLayoutProps {
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const headerStyle = {
     backgroundColor: "#0F172A",
     borderBottom: "1px solid #1E293B",
@@ -54,6 +56,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     backgroundImage: "linear-gradient(to bottom right, #0F172A, #1E293B)",
     paddingTop: "80px",
     paddingBottom: "40px",
+    paddingLeft: "20px",
+    paddingRight: "20px",
   };
 
   const navLinks = [
@@ -77,7 +81,12 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
             Shafii
           </Link>
 
-          <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
+          {/* Desktop Navigation */}
+          <div style={{ 
+            display: window.innerWidth > 768 ? "flex" : "none",
+            gap: "20px", 
+            alignItems: "center"
+          }}>
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -92,7 +101,54 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
               </Link>
             ))}
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            style={{
+              display: window.innerWidth <= 768 ? "block" : "none",
+              background: "none",
+              border: "none",
+              color: "#D1D5DB",
+              fontSize: "24px",
+              cursor: "pointer",
+              padding: "8px",
+            }}
+          >
+            ☰
+          </button>
         </nav>
+
+        {/* Mobile Navigation Menu */}
+        {isMobileMenuOpen && (
+          <div style={{
+            position: "absolute",
+            top: "100%",
+            left: 0,
+            right: 0,
+            backgroundColor: "#0F172A",
+            borderBottom: "1px solid #1E293B",
+            padding: "20px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+          }}>
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                onClick={() => setIsMobileMenuOpen(false)}
+                style={{
+                  ...(window.location.pathname === link.path ? activeLinkStyle : linkStyle),
+                  fontSize: "18px",
+                  padding: "12px 16px",
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        )}
       </header>
 
       <main style={mainStyle}>{children}</main>

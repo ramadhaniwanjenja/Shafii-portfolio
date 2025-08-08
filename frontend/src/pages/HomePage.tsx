@@ -117,7 +117,7 @@ const HomePage: React.FC = () => {
             margin: "0 auto 60px auto",
             border: "1px solid rgba(139, 92, 246, 0.3)",
             borderRadius: "20px",
-            padding: "40px",
+            padding: window.innerWidth > 768 ? "40px" : "20px",
             position: "relative",
             background: "rgba(15, 23, 42, 0.6)",
             backdropFilter: "blur(10px)",
@@ -130,8 +130,8 @@ const HomePage: React.FC = () => {
               maxWidth: "1200px",
               margin: "0 auto",
               display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "40px",
+              gridTemplateColumns: window.innerWidth > 768 ? "1fr 1fr" : "1fr",
+              gap: window.innerWidth > 768 ? "40px" : "20px",
               alignItems: "center",
             }}
           >
@@ -150,7 +150,7 @@ const HomePage: React.FC = () => {
               <motion.h1
                 variants={itemVariants}
                 style={{
-                  fontSize: "64px",
+                  fontSize: window.innerWidth > 768 ? "64px" : "36px",
                   fontWeight: "bold",
                   marginBottom: "24px",
                   color: "#8B5CF6",
@@ -161,7 +161,7 @@ const HomePage: React.FC = () => {
               <motion.h2
                 variants={itemVariants}
                 style={{
-                  fontSize: "32px",
+                  fontSize: window.innerWidth > 768 ? "32px" : "20px",
                   color: "#8B5CF6",
                   marginBottom: "32px",
                 }}
