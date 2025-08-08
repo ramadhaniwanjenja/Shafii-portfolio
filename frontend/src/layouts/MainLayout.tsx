@@ -132,6 +132,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
+            zIndex: 1001,
           }}>
             {navLinks.map((link) => (
               <Link

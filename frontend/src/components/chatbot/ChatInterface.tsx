@@ -141,11 +141,16 @@ const ChatInterface: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
         <>
           <div className="fixed inset-0 bg-black/50 z-40" onClick={onClose} />
           <motion.div
-            className="fixed bottom-20 right-4 w-[320px] md:w-[380px] bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100 z-50"
+            className="fixed bottom-20 right-4 w-[320px] md:w-[380px] bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100 z-[9999] chat-interface"
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
+            style={{
+              top: window.innerWidth > 768 ? '100px' : 'auto',
+              bottom: window.innerWidth > 768 ? 'auto' : '20px',
+              right: window.innerWidth > 768 ? '20px' : '16px',
+            }}
           >
             {/* Chat Header */}
             <div className="bg-gradient-to-r from-[#8b5cf6] to-[#6d28d9] p-4 text-white">
